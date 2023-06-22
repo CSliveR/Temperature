@@ -43,14 +43,6 @@ public class Utilitaire{
            System.out.println(temp + " K" + " = " + Convert.kelvinToKelvin(temp) + " K");
         }
 
-
-
-
-
-
-
-
-
     }
 
 }
