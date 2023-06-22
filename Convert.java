@@ -29,7 +29,7 @@ public class Convert {
     }
 
     public static float kelvinToCelsius(float temp) {
-        return -celsiusToKelvin(temp);
+        return (float) ((float) temp - 273.15);
     }
 
     public static float kelvinToFahrenheit(float temp) {
