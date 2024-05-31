@@ -1,39 +1,48 @@
+
 import java.util.Scanner;
-import java.util.InputMismatchException;
+
 
 public class Temperature{
-   
-    public static String saisieUnites(Scanner lecteur) {
-        System.out.println("Unités de température possibles: Celsius / Fahrenheit / Kelvin");
-        System.out.println("Entrez une unité de température");
-        String unite = lecteur.nextLine();
-
-        while (unite.compareToIgnoreCase("Celsius") == 0 || unite.compareToIgnoreCase("Fahrenheit") == 0
-                || unite.compareToIgnoreCase("Kelvin") == 0) {
-            return unite;
-        }
-
-        return saisieUnites(lecteur);
-
-    }
-   
-    public static int saisieTemperature(Scanner lecteur) throws InputMismatchException {
-        int temp = 0;
-        try {
-            System.out.println("Entrez une valeur entière");
-            temp = lecteur.nextInt();
-            return temp;
+    public static void main(String[] args) {
         
-        } catch (InputMismatchException e) {
-            System.err.println("Saisie incorrecte !");
-            lecteur = new Scanner(System.in);
-            return saisieTemperature(lecteur);
+        Scanner lecteur = new Scanner(System.in);
+        String uniteDeb = Utilitaire.saisieUnites(lecteur);
+        String uniteFin = Utilitaire.saisieUnites(lecteur);
+        int temp = Utilitaire.saisieTemperature(lecteur);
+
+        if ((uniteDeb.compareToIgnoreCase("Celsius") == 0) && (uniteFin.compareToIgnoreCase("Celsius") == 0)) {
+            System.out.println(temp + "°C" + " = " + Convert.celsiusToCelsius(temp) + "°C");
+        }
+        else if ((uniteDeb.compareToIgnoreCase("Celsius") == 0) && (uniteFin.compareToIgnoreCase("Fahrenheit") == 0)) {
+           System.out.println(temp + "°C" + " = " + Convert.celsiusToFahrenheit(temp) + "°F");
+        }
+        else if((uniteDeb.compareToIgnoreCase("Celsius") == 0) && (uniteFin.compareToIgnoreCase("Kelvin") == 0)) {
+            System.out.println(temp + "°C" + " = " + Convert.celsiusToKelvin(temp) + " K");
+        }
+        
+        
+        
+        else if ((uniteDeb.compareToIgnoreCase("Fahrenheit") == 0) && (uniteFin.compareToIgnoreCase("Celsius") == 0)) {
+            System.out.println(temp + "°F" + " = " + Convert.fahrenheitToCelsius(temp) + "°C");
+        }
+        else if ((uniteDeb.compareToIgnoreCase("Fahrenheit") == 0) && (uniteFin.compareToIgnoreCase("Fahrenheit") == 0)) {
+            System.out.println(temp + "°F" + " = " + Convert.fahrenheitToFahrenheit(temp) + "°F");
+        }
+        else if ((uniteDeb.compareToIgnoreCase("Fahrenheit") == 0) && (uniteFin.compareToIgnoreCase("Kelvin") == 0)) {
+            System.out.println(temp + "°F" + " = " + Convert.fahrenheitToKelvin(temp) + " K");
+        }
+
+        
+        else if ((uniteDeb.compareToIgnoreCase("Kelvin") == 0) && (uniteFin.compareToIgnoreCase("Celsius") == 0)) {
+            System.out.println(temp + " K" + " = " + Convert.kelvinToCelsius(temp) + "°C");
+        }
+        else if ((uniteDeb.compareToIgnoreCase("Kelvin") == 0) && (uniteFin.compareToIgnoreCase("Fahrenheit") == 0)) {
+            System.out.println(temp + " K" + " = " + Convert.kelvinToFahrenheit(temp) + "°F");
+        }
+        else if ((uniteDeb.compareToIgnoreCase("Kelvin") == 0) && (uniteFin.compareToIgnoreCase("Kelvin") == 0)) {
+           System.out.println(temp + " K" + " = " + Convert.kelvinToKelvin(temp) + " K");
         }
 
     }
-
-    
-
-
 
 }
